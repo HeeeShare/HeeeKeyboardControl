@@ -1,0 +1,356 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A707F32620FF6B5500CAC674 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A707F32520FF6B5500CAC674 /* AppDelegate.m */; };
+		A707F32920FF6B5500CAC674 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A707F32820FF6B5500CAC674 /* ViewController.m */; };
+		A707F32C20FF6B5500CAC674 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A707F32A20FF6B5500CAC674 /* Main.storyboard */; };
+		A707F32E20FF6B5500CAC674 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A707F32D20FF6B5500CAC674 /* Assets.xcassets */; };
+		A707F33120FF6B5500CAC674 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A707F32F20FF6B5500CAC674 /* LaunchScreen.storyboard */; };
+		A707F33420FF6B5600CAC674 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A707F33320FF6B5600CAC674 /* main.m */; };
+		A707F33D20FF6B6600CAC674 /* HeeeKeyboardControl.m in Sources */ = {isa = PBXBuildFile; fileRef = A707F33B20FF6B6600CAC674 /* HeeeKeyboardControl.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A707F32120FF6B5500CAC674 /* HeeeKeyboardControl-demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HeeeKeyboardControl-demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A707F32420FF6B5500CAC674 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		A707F32520FF6B5500CAC674 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A707F32720FF6B5500CAC674 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		A707F32820FF6B5500CAC674 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		A707F32B20FF6B5500CAC674 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A707F32D20FF6B5500CAC674 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A707F33020FF6B5500CAC674 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A707F33220FF6B5600CAC674 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A707F33320FF6B5600CAC674 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A707F33B20FF6B6600CAC674 /* HeeeKeyboardControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeeeKeyboardControl.m; sourceTree = "<group>"; };
+		A707F33C20FF6B6600CAC674 /* HeeeKeyboardControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeeeKeyboardControl.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A707F31E20FF6B5500CAC674 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A707F31820FF6B5500CAC674 = {
+			isa = PBXGroup;
+			children = (
+				A707F32320FF6B5500CAC674 /* HeeeKeyboardControl-demo */,
+				A707F32220FF6B5500CAC674 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A707F32220FF6B5500CAC674 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A707F32120FF6B5500CAC674 /* HeeeKeyboardControl-demo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A707F32320FF6B5500CAC674 /* HeeeKeyboardControl-demo */ = {
+			isa = PBXGroup;
+			children = (
+				A707F32420FF6B5500CAC674 /* AppDelegate.h */,
+				A707F32520FF6B5500CAC674 /* AppDelegate.m */,
+				A707F32720FF6B5500CAC674 /* ViewController.h */,
+				A707F32820FF6B5500CAC674 /* ViewController.m */,
+				A707F33A20FF6B6600CAC674 /* HeeeKeyboardControl */,
+				A707F32A20FF6B5500CAC674 /* Main.storyboard */,
+				A707F32D20FF6B5500CAC674 /* Assets.xcassets */,
+				A707F32F20FF6B5500CAC674 /* LaunchScreen.storyboard */,
+				A707F33220FF6B5600CAC674 /* Info.plist */,
+				A707F33320FF6B5600CAC674 /* main.m */,
+			);
+			path = "HeeeKeyboardControl-demo";
+			sourceTree = "<group>";
+		};
+		A707F33A20FF6B6600CAC674 /* HeeeKeyboardControl */ = {
+			isa = PBXGroup;
+			children = (
+				A707F33C20FF6B6600CAC674 /* HeeeKeyboardControl.h */,
+				A707F33B20FF6B6600CAC674 /* HeeeKeyboardControl.m */,
+			);
+			path = HeeeKeyboardControl;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A707F32020FF6B5500CAC674 /* HeeeKeyboardControl-demo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A707F33720FF6B5600CAC674 /* Build configuration list for PBXNativeTarget "HeeeKeyboardControl-demo" */;
+			buildPhases = (
+				A707F31D20FF6B5500CAC674 /* Sources */,
+				A707F31E20FF6B5500CAC674 /* Frameworks */,
+				A707F31F20FF6B5500CAC674 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "HeeeKeyboardControl-demo";
+			productName = "HeeeKeyboardControl-demo";
+			productReference = A707F32120FF6B5500CAC674 /* HeeeKeyboardControl-demo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A707F31920FF6B5500CAC674 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = hgy;
+				TargetAttributes = {
+					A707F32020FF6B5500CAC674 = {
+						CreatedOnToolsVersion = 9.4;
+					};
+				};
+			};
+			buildConfigurationList = A707F31C20FF6B5500CAC674 /* Build configuration list for PBXProject "HeeeKeyboardControl-demo" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A707F31820FF6B5500CAC674;
+			productRefGroup = A707F32220FF6B5500CAC674 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A707F32020FF6B5500CAC674 /* HeeeKeyboardControl-demo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A707F31F20FF6B5500CAC674 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A707F33120FF6B5500CAC674 /* LaunchScreen.storyboard in Resources */,
+				A707F32E20FF6B5500CAC674 /* Assets.xcassets in Resources */,
+				A707F32C20FF6B5500CAC674 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A707F31D20FF6B5500CAC674 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A707F32920FF6B5500CAC674 /* ViewController.m in Sources */,
+				A707F33D20FF6B6600CAC674 /* HeeeKeyboardControl.m in Sources */,
+				A707F33420FF6B5600CAC674 /* main.m in Sources */,
+				A707F32620FF6B5500CAC674 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A707F32A20FF6B5500CAC674 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A707F32B20FF6B5500CAC674 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A707F32F20FF6B5500CAC674 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A707F33020FF6B5500CAC674 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A707F33520FF6B5600CAC674 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		A707F33620FF6B5600CAC674 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A707F33820FF6B5600CAC674 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 27HH8LNC45;
+				INFOPLIST_FILE = "HeeeKeyboardControl-demo/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = www.Heee.cessssss;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A707F33920FF6B5600CAC674 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 27HH8LNC45;
+				INFOPLIST_FILE = "HeeeKeyboardControl-demo/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = www.Heee.cessssss;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A707F31C20FF6B5500CAC674 /* Build configuration list for PBXProject "HeeeKeyboardControl-demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A707F33520FF6B5600CAC674 /* Debug */,
+				A707F33620FF6B5600CAC674 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A707F33720FF6B5600CAC674 /* Build configuration list for PBXNativeTarget "HeeeKeyboardControl-demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A707F33820FF6B5600CAC674 /* Debug */,
+				A707F33920FF6B5600CAC674 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A707F31920FF6B5500CAC674 /* Project object */;
+}
