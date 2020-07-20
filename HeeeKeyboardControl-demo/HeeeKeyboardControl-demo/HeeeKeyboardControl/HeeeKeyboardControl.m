@@ -10,9 +10,8 @@
 #import <objc/message.h>
 
 @interface HeeeKeyboardControl()
-@property (nonatomic,  weak) id<HeeeKeyboardControlDelegate> delegate;
 @property (nonatomic,strong) NSMutableArray *inputViewArr;
-@property (nonatomic,strong) UIView *inputBackView;//所有inputView的总父view
+@property (nonatomic,weak) UIView *inputBackView;//所有inputView的总父view
 @property (nonatomic,strong) UIVisualEffectView *effectView;//背景view
 @property (nonatomic,strong) UIButton *previousBtn;
 @property (nonatomic,strong) UIButton *nextBtn;
@@ -24,7 +23,6 @@
 @property (nonatomic,assign) CGPoint originalContenOffset;//当inputBackView是scrollview时的初始offset
 @property (nonatomic,assign) CGFloat originalBottomContentInset;//当inputBackView是scrollview时bottom的初始inset
 @property (nonatomic,assign) CGFloat keyBoardTop;//键盘的y坐标
-@property (nonatomic,assign) CGFloat animateDuration;//键盘动画时间
 @property (nonatomic,assign) CGFloat inputViewKeyBoardGap;//inputView与键盘顶部的间隙
 @property (nonatomic,strong) UIView *selectedInputView;//选中的UITextView
 @property (nonatomic,assign) CGFloat originalContentSizeHeight;
@@ -36,90 +34,81 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-+ (HeeeKeyboardControl *)makeControlWithInputViews:(NSArray *)inputViewArr inputBackView:(UIView *)inputBackView andDelegate:(id)delegate {
-    return [[HeeeKeyboardControl alloc] initWithInputViews:inputViewArr inputBackView:inputBackView andDelegate:delegate];
++ (HeeeKeyboardControl *)makeControlWithInputViews:(NSArray *)inputViewArr inputBackView:(UIView *)inputBackView {
+    if(!inputBackView || inputViewArr.count == 0) return nil;
+    return [[HeeeKeyboardControl alloc] initWithInputViews:inputViewArr inputBackView:inputBackView];
 }
 
-- (instancetype)initWithInputViews:(NSArray *)inputViewArr inputBackView:(UIView *)inputBackView andDelegate:(id)delegate {
+- (instancetype)initWithInputViews:(NSArray *)inputViewArr inputBackView:(UIView *)inputBackView {
     self = [super init];
     if (self) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self handleInputViews:inputViewArr inputBackView:inputBackView andAssociatedObject:delegate];
+            [self handleInputViews:inputViewArr inputBackView:inputBackView];
         });
     }
     
     return self;
 }
 
-- (void)handleInputViews:(NSArray *)inputViewArr inputBackView:(UIView *)inputBackView andAssociatedObject:(id)delegate {
-    if (delegate) {
-        _delegate = delegate;
-        
-        objc_setAssociatedObject(delegate, @"heeeKeyboardControl_AO", self, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        
-        _selectedIndex = -1;
-        _basicGap = _basicGap==0?20:_basicGap;
-        _color = [UIColor colorWithRed:27/255.0 green:133/255.0 blue:250/255.0 alpha:1.0];
-        _inputViewBottomArr = [NSMutableArray array];
-        _inputViewArr = [NSMutableArray array];
-        _inputBackView = inputBackView;
-        _backViewOriginalFrame = _inputBackView.frame;
-        _backViewOriginalFrameInWindow = [_inputBackView.superview convertRect:_inputBackView.frame toView:[UIApplication sharedApplication].keyWindow];
-        
-        if ([_inputBackView isKindOfClass:[UIScrollView class]]) {
-            UIScrollView *scrollView = ((UIScrollView *)_inputBackView);
-            _originalContenOffset = scrollView.contentOffset;
-            _originalBottomContentInset = scrollView.contentInset.bottom;
-            if (@available(iOS 11.0, *)) {
-                _originalBottomContentInset = scrollView.contentInset.bottom - scrollView.adjustedContentInset.bottom;
-            }
-            _originalContentSizeHeight = scrollView.contentSize.height;
-        }
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidBeginEditing:) name:UITextFieldTextDidBeginEditingNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidEndEditing:) name:UITextFieldTextDidEndEditingNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textViewTextDidBeginEditing:) name:UITextViewTextDidBeginEditingNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textViewTextDidEndEditing:) name:UITextViewTextDidEndEditingNotification object:nil];
-        
-        _effectView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:(UIBlurEffectStyleExtraLight)]];
-        _effectView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 44);
-        
-        UIView *topLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _effectView.frame.size.width, 0.5)];
-        topLineView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.2];
-        [_effectView.contentView addSubview:topLineView];
-        
-        UIView *bottomLineView = [[UIView alloc] initWithFrame:CGRectMake(0, _effectView.frame.size.height - 0.5, _effectView.frame.size.width, 0.5)];
-        bottomLineView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.2];
-        [_effectView.contentView addSubview:bottomLineView];
-        
-        _previousBtn = [self createBtnWithTitle:@"上一个"];
-        [_previousBtn addTarget:self action:@selector(previous) forControlEvents:(UIControlEventTouchUpInside)];
-        _previousBtn.frame = CGRectMake(10, 7, 60, 30);
-        [_effectView.contentView addSubview:_previousBtn];
-        
-        _nextBtn = [self createBtnWithTitle:@"下一个"];
-        [_nextBtn addTarget:self action:@selector(next) forControlEvents:(UIControlEventTouchUpInside)];
-        _nextBtn.frame = CGRectMake(80, 7, 60, 30);
-        [_effectView.contentView addSubview:_nextBtn];
-        
-        _doneBtn = [self createBtnWithTitle:@"完成"];
-        [_doneBtn addTarget:self action:@selector(done) forControlEvents:(UIControlEventTouchUpInside)];
-        _doneBtn.frame = CGRectMake(_effectView.frame.size.width - 60, 7, 50, 30);
-        [_effectView.contentView addSubview:_doneBtn];
-        
-        [self setIsEnStyle:_isEnStyle];
-        
-        for (UIView *view in inputViewArr)
-        {
-            if ([view isKindOfClass:[UITextField class]] || [view isKindOfClass:[UITextView class]])
-            {
-                [_inputViewArr addObject:view];
-                [(UITextField *)view setInputAccessoryView:_effectView];
-                CGRect frameInWindow = [view.superview convertRect:view.frame toView:[UIApplication sharedApplication].keyWindow];
-                CGFloat inputViewBottom = frameInWindow.origin.y + view.frame.size.height;
-                [_inputViewBottomArr addObject:[NSNumber numberWithFloat:inputViewBottom]];
-            }
+- (void)handleInputViews:(NSArray *)inputViewArr inputBackView:(UIView *)inputBackView {
+    objc_setAssociatedObject(inputBackView, @"heeeKeyboardControl_AO", self, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    
+    _selectedIndex = -1;
+    _basicGap = _basicGap==0?20:_basicGap;
+    _color = [UIColor colorWithRed:27/255.0 green:133/255.0 blue:250/255.0 alpha:1.0];
+    _inputViewBottomArr = [NSMutableArray array];
+    _inputViewArr = [NSMutableArray array];
+    _inputBackView = inputBackView;
+    _backViewOriginalFrame = _inputBackView.frame;
+    _backViewOriginalFrameInWindow = [_inputBackView.superview convertRect:_inputBackView.frame toView:[UIApplication sharedApplication].keyWindow];
+    
+    if ([_inputBackView isKindOfClass:[UIScrollView class]]) {
+        _originalContenOffset = ((UIScrollView *)_inputBackView).contentOffset;
+        _originalBottomContentInset = ((UIScrollView *)_inputBackView).contentInset.bottom;
+        _originalContentSizeHeight = ((UIScrollView *)_inputBackView).contentSize.height;
+    }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidBeginEditing:) name:UITextFieldTextDidBeginEditingNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidEndEditing:) name:UITextFieldTextDidEndEditingNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textViewTextDidBeginEditing:) name:UITextViewTextDidBeginEditingNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textViewTextDidEndEditing:) name:UITextViewTextDidEndEditingNotification object:nil];
+    
+    _effectView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:(UIBlurEffectStyleExtraLight)]];
+    _effectView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 44);
+    
+    UIView *topLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _effectView.frame.size.width, 0.5)];
+    topLineView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.2];
+    [_effectView.contentView addSubview:topLineView];
+    
+    UIView *bottomLineView = [[UIView alloc] initWithFrame:CGRectMake(0, _effectView.frame.size.height - 0.5, _effectView.frame.size.width, 0.5)];
+    bottomLineView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.2];
+    [_effectView.contentView addSubview:bottomLineView];
+    
+    _previousBtn = [self createBtnWithTitle:@"上一个"];
+    [_previousBtn addTarget:self action:@selector(previous) forControlEvents:(UIControlEventTouchUpInside)];
+    _previousBtn.frame = CGRectMake(10, 7, 60, 30);
+    [_effectView.contentView addSubview:_previousBtn];
+    
+    _nextBtn = [self createBtnWithTitle:@"下一个"];
+    [_nextBtn addTarget:self action:@selector(next) forControlEvents:(UIControlEventTouchUpInside)];
+    _nextBtn.frame = CGRectMake(80, 7, 60, 30);
+    [_effectView.contentView addSubview:_nextBtn];
+    
+    _doneBtn = [self createBtnWithTitle:@"完成"];
+    [_doneBtn addTarget:self action:@selector(done) forControlEvents:(UIControlEventTouchUpInside)];
+    _doneBtn.frame = CGRectMake(_effectView.frame.size.width - 60, 7, 50, 30);
+    [_effectView.contentView addSubview:_doneBtn];
+    
+    [self setIsEnStyle:_isEnStyle];
+    
+    for (UIView *view in inputViewArr) {
+        if ([view isKindOfClass:[UITextField class]] || [view isKindOfClass:[UITextView class]]) {
+            [_inputViewArr addObject:view];
+            [(UITextField *)view setInputAccessoryView:_effectView];
+            CGRect frameInWindow = [view.superview convertRect:view.frame toView:[UIApplication sharedApplication].keyWindow];
+            CGFloat inputViewBottom = frameInWindow.origin.y + view.frame.size.height;
+            [_inputViewBottomArr addObject:[NSNumber numberWithFloat:inputViewBottom]];
         }
     }
 }
@@ -238,7 +227,7 @@
             
             UIScrollView *temScrollView = (UIScrollView *)_inputBackView;
             if (selectInputViewBottom > _keyBoardTop) {
-                [UIView animateWithDuration:_animateDuration animations:^{
+                [UIView animateWithDuration:0.25 animations:^{
                     [temScrollView setContentOffset:CGPointMake(0, selectInputViewBottom - self.keyBoardTop + self.originalContenOffset.y)];
                 }];
             }else{
@@ -248,11 +237,11 @@
             selectInputViewBottom += _basicGap;
             
             if (selectInputViewBottom > _keyBoardTop) {
-                [UIView animateWithDuration:_animateDuration animations:^{
+                [UIView animateWithDuration:0.25 animations:^{
                     self.inputBackView.frame = CGRectMake(self.backViewOriginalFrame.origin.x, self.backViewOriginalFrame.origin.y - (selectInputViewBottom - self.keyBoardTop), self.backViewOriginalFrame.size.width, self.backViewOriginalFrame.size.height);
                 }];
             }else{
-                [UIView animateWithDuration:_animateDuration animations:^{
+                [UIView animateWithDuration:0.25 animations:^{
                     self.inputBackView.frame = self.backViewOriginalFrame;
                 }];
             }
@@ -300,12 +289,6 @@
 
 - (void)keyboardWillChangeFrame:(NSNotification *)notification {
     _keyBoardTop = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].origin.y;
-    if ([UIDevice currentDevice].systemVersion.floatValue < 12.0) {
-        _animateDuration = 0.25;
-    }else{
-        _animateDuration = [[[notification userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
-    }
-    
     [self handleInputBackViewFrame];
     [self handleButtonsWithInputView:_selectedInputView];
 }

@@ -48,13 +48,7 @@
     [_inputViewArr addObject:textView];
     
     //一句代码搞定
-    [HeeeKeyboardControl makeControlWithInputViews:_inputViewArr inputBackView:_inputBackView andDelegate:self];
+    [HeeeKeyboardControl makeControlWithInputViews:_inputViewArr inputBackView:_inputBackView];
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 
 @end
