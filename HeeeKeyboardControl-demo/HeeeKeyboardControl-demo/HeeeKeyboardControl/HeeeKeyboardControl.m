@@ -146,6 +146,7 @@
             }
         }
     }
+    [self handleButtonsWithInputView:self.selectedInputView];
     
     CGRect endFrame = [[[noti userInfo] objectForKey:@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
     CGRect frameInWindow = [self.inputBackView.superview convertRect:self.backViewOriginalFrame toView:[UIApplication sharedApplication].keyWindow];
