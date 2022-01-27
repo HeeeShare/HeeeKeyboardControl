@@ -152,14 +152,14 @@
     CGRect frameInWindow = [self.inputBackView.superview convertRect:self.backViewOriginalFrame toView:[UIApplication sharedApplication].keyWindow];
     [UIView animateWithDuration:0.25 animations:^{
         if (self.selectedInputView) {
-            if (CGRectGetMaxY(frameInWindow) > CGRectGetMinY(endFrame)) {
-                CGFloat offsetY = CGRectGetMaxY(frameInWindow) - CGRectGetMinY(endFrame);
-                self.inputBackView.frame = CGRectMake(self.backViewOriginalFrame.origin.x, self.backViewOriginalFrame.origin.y, self.backViewOriginalFrame.size.width, self.backViewOriginalFrame.size.height - offsetY);
-            }
-            
             CGRect frame = [self.selectedInputView.superview convertRect:self.selectedInputView.frame toView:[UIApplication sharedApplication].keyWindow];
             CGFloat gap = CGRectGetMaxY(frame) + self.basicGap - CGRectGetMinY(endFrame);
             if ([self.inputBackView isKindOfClass:[UIScrollView class]]) {
+                if (CGRectGetMaxY(frameInWindow) > CGRectGetMinY(endFrame)) {
+                    CGFloat offsetY = CGRectGetMaxY(frameInWindow) - CGRectGetMinY(endFrame);
+                    self.inputBackView.frame = CGRectMake(self.backViewOriginalFrame.origin.x, self.backViewOriginalFrame.origin.y, self.backViewOriginalFrame.size.width, self.backViewOriginalFrame.size.height - offsetY);
+                }
+                
                 UIScrollView *sc = (UIScrollView *)self.inputBackView;
                 CGFloat ocy = sc.contentOffset.y + gap;
                 CGFloat ff = ocy>-sc.adjustedContentInset.top?ocy:-sc.adjustedContentInset.top;
